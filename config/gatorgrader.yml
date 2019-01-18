@@ -1,0 +1,20 @@
+---
+name: cmpsc-302-spring-2019-practical1
+break: true
+indent: 4
+---
+# --> check the source code for various characteristics
+# note that without an "--exact" the check is an "at least"
+src/www:
+    answers.md:
+        mdl
+        proselint
+        --fragment "# A Web Site Created by" --count 1 --exact
+        --fragment "##" --count 3 --exact
+        --fragment "jpg" --count 1 --exact
+        --fragment "png" --count 1 --exact
+# --> check the number of commits beyond a threshold
+--commits 10
+# --> check that the pandoc conversion executes and produces 0 lines of output
+--command "pandoc src/www/answers.md --output=src/www/answers.html" --executes
+--command "pandoc src/www/answers.md --output=src/www/answers.html" --count 0 --exact
